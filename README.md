@@ -31,3 +31,6 @@ Listing a short description of some methods of Booking Service Class.
 4.) updateBooking
 
   4.1) This will update the booking's details.
+  
+  
+ Further more are the CRUD methods made for the Room and Customer enttities.
