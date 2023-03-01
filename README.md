@@ -19,3 +19,15 @@ Listing a short description of some methods of Booking Service Class.
   1.4) An additional discount of 5% will be applied in case the booking is done via online.
   
   1.5) This method also checks for the constraint that if a customer books more than 3 than 50% advance should be paid prior to booking and bill will be calculated for the rest of the amount.
+
+2.) getAllBookingDetails
+  
+  2.1) This will return all the bookings details.
+  
+3.) deleteBookingDetails
+
+  3.1)This will delete booking details for a particular ID.
+  
+4.) updateBooking
+
+  4.1) This will update the booking's details.
