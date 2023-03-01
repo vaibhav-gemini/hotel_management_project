@@ -238,7 +238,12 @@ public class BookingServiceImp implements BookingService{
         count+= countCustomers(booking);
         List<Room> roomList = new ArrayList<>();
         Booking modifiedBooking = new Booking();
+        System.out.println("Count : "+count);
         int roomNeeded = count/2;
+        System.out.println("Room needed : " + roomNeeded);
+        if(count == 1){
+            roomNeeded = 1;
+        }
         while(roomNeeded>0){
             modifiedBooking = new Booking();
             modifiedBooking = methodToAllocateRoom(booking, roomList);
