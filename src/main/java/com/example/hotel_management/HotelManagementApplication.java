@@ -14,5 +14,4 @@ public class HotelManagementApplication {
 		SpringApplication.run(HotelManagementApplication.class, args);
 	}
 
-	//documentation apifirst codefirst vs designfirst
 }

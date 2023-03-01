@@ -35,32 +35,32 @@ public class BookingServiceTest {
     @InjectMocks
     private RoomServiceImp roomServiceImp;
 
-    Customer customer1 = new Customer(1L,"mana","india","123",20);
-    Customer customer2 = new Customer(2L,"shruti","india","123",25);
-    Customer customer3 = new Customer(3L,"ayush","india","123",29);
-    Customer customer4 = new Customer(4L,"rajat","india","123",30);
-    Room room = new Room(1L,"simple",2,true,5000,false,true);
-    List<Customer> customerList1 = new ArrayList<>(Arrays.asList(customer1,customer2));
-    List<Customer> customerList2 = new ArrayList<>(Arrays.asList(customer3,customer4));
+    Customer customer1 = new Customer(1L, "mana", "india", "123", 20);
+    Customer customer2 = new Customer(2L, "shruti", "india", "123", 25);
+    Customer customer3 = new Customer(3L, "ayush", "india", "123", 29);
+    Customer customer4 = new Customer(4L, "rajat", "india", "123", 30);
+    Room room = new Room(1L, "simple", 2, true, 5000, false, true);
+    List<Customer> customerList1 = new ArrayList<>(Arrays.asList(customer1, customer2));
+    List<Customer> customerList2 = new ArrayList<>(Arrays.asList(customer3, customer4));
     List<Room> rooms = new ArrayList<>(Arrays.asList(room));
-    Booking booking1 = new Booking(1L,5,new Date(11-07-2000),new Date(19-07-2000),customerList1,"simple",rooms,"offline",25000,"online");
-    Booking booking2 = new Booking(2L,5,new Date(11-07-2000),new Date(19-07-2000),customerList2,"luxury",rooms,"offline",35000,"online");
+    Booking booking1 = new Booking(1L, 5, new Date(11 - 07 - 2000), new Date(19 - 07 - 2000), customerList1, "simple", rooms, "offline", 25000, "online");
+    Booking booking2 = new Booking(2L, 5, new Date(11 - 07 - 2000), new Date(19 - 07 - 2000), customerList2, "luxury", rooms, "offline", 35000, "online");
 
 
     @Test
-    public void getAllBookingDetailsTest() throws Exception{
-        List<Booking> bookingList = new ArrayList<>(Arrays.asList(booking1,booking2));
+    public void getAllBookingDetailsTest() throws Exception {
+        List<Booking> bookingList = new ArrayList<>(Arrays.asList(booking1, booking2));
 
         when(bookingRepository.findAll()).thenReturn(bookingList);
         assertNotNull(bookingList);
-        assertEquals(2,bookingServiceImp.getAllBookingDetails().size());
+        assertEquals(2, bookingServiceImp.getAllBookingDetails().size());
         verify(bookingRepository).findAll();
     }
 
     @Test
-    public void getBookingDetailsByIdTest(){
+    public void getBookingDetailsByIdTest() {
         when(bookingRepository.findById(anyLong())).thenReturn(Optional.of(booking1));
-        assertEquals(5,bookingServiceImp.getBookingDetailsById(1L).getDuration());
+        assertEquals(5, bookingServiceImp.getBookingDetailsById(1L).getDuration());
         verify(bookingRepository).findById(1L);
     }
 
@@ -69,8 +69,8 @@ public class BookingServiceTest {
         Booking newBooking = Booking.builder()
                 .booking_id(3L)
                 .duration(15)
-                .start_date(new Date(11-07-2000))
-                .end_date(new Date(15-07-2000))
+                .start_date(new Date(11 - 07 - 2000))
+                .end_date(new Date(15 - 07 - 2000))
                 .mode_of_payement("online")
                 .modeOfBokking("offline")
                 .bill_amount(50000)
@@ -79,8 +79,8 @@ public class BookingServiceTest {
                 .build();
         when(bookingRepository.save(Mockito.any())).thenReturn(newBooking);
         Booking booking = bookingServiceImp.addBookingDetails(newBooking);
-        assertNotNull(newBooking);
-        assertEquals(booking,newBooking);
+        assertNotNull(booking);
+        assertEquals(booking, newBooking);
 
         verify(bookingRepository).save(newBooking);
     }
@@ -90,8 +90,8 @@ public class BookingServiceTest {
         Booking newBooking = Booking.builder()
                 .booking_id(3L)
                 .duration(15)
-                .start_date(new Date(11-07-2000))
-                .end_date(new Date(15-07-2000))
+                .start_date(new Date(11 - 07 - 2000))
+                .end_date(new Date(15 - 07 - 2000))
                 .mode_of_payement("online")
                 .modeOfBokking("offline")
                 .bill_amount(50000)
@@ -120,12 +120,23 @@ public class BookingServiceTest {
     }
 
     @Test
-    public void methodToAllocateRoomTest(){
-        Booking booking = booking1;
-        List<Room> roomList = rooms;
-        when(roomRepository.findRoomByTypeAndAvailability(anyString(), anyBoolean())).thenReturn(roomList);
+    public void methodToAllocateRoomTest() throws DataNotFoundException {
+        Room record = Room.builder()
+                .room_number(1L)
+                .type("simple")
+                .occupancy(2)
+                .availability(true)
+                .price_per_day(5000)
+                .checked(false)
+                .isCheckedOut(true)
+                .build();
 
-        //verify(roomRepository).findRoomByTypeAndAvailability("simple", true);
-    }
+        when(roomRepository.save(Mockito.any())).thenReturn(record);
+        Room room = roomServiceImp.addRooms(record);
+        assertNotNull(room);
+        assertEquals(room, record);
 
+        verify(roomRepository).save(record);
+        when(roomRepository.findRoomByTypeAndAvailability(anyString(), anyBoolean())).thenReturn(rooms);
+        }
 }

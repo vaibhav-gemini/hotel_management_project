@@ -84,6 +84,10 @@ public class BookingServiceImp implements BookingService{
         double totalBill ;
         totalBill = booking.getDuration() * totalRoomPrice;
 
+        if(booking.getModeOfBokking().equals("online")){
+            log.info("Thanks for choosing online payment you will get an extra 5% discount! ");
+            totalBill -= totalBill*0.05;
+        }
 
 
         if(rooms.size()>3){
@@ -125,7 +129,6 @@ public class BookingServiceImp implements BookingService{
     public void deleteBookingDetails(long id) throws IdNotFoundException, DataNotFoundException {
         Optional<Booking> booking = bookingRepository.findById(id);
         List<Room> rooms = booking.get().getRoomList();
-        System.out.println("Rooms"+rooms);
         if(booking.isEmpty()){
             throw new IdNotFoundException("No ID present with ID "+id);
         }

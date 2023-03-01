@@ -69,7 +69,7 @@ public class RoomServiceImp implements RoomService{
     public void addDefaultroom() {
         Room room1 = new Room(101, "deluxe", 2, true, 10000, false, true);
         Room room2 = new Room(201, "simple", 2, true, 5000, false, true);
-        Room room3 = new Room(301, "simple", 2, true, 8000, false, true);
+        Room room3 = new Room(301, "simple", 2, true, 5000, false, true);
         Room room4 = new Room(401, "luxury", 2, true, 15000, false, true);
         roomRepository.save(room1);
         roomRepository.save(room2);
