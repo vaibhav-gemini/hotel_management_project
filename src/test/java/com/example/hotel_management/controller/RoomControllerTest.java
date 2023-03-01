@@ -104,11 +104,11 @@ public class RoomControllerTest {
                 .build();
 
         System.out.println(updatedRoom);
-    // Can use this also     Mockito.when(roomServiceImp.updateRoom(Mockito.any(), anyLong())).thenReturn(updatedRoom);
+        //Mockito.when(roomServiceImp.updateRoom(Mockito.any(), anyLong())).thenReturn(updatedRoom); {Can also use this instead of below two lines}
         Mockito.when(roomServiceImp.getRoomById(room1.getRoom_number())).thenReturn(room1);
         Mockito.when(roomServiceImp.addRooms(Mockito.any())).thenReturn(updatedRoom);
         String updatedContent = objectWriter.writeValueAsString(updatedRoom);
-        // Can use this also       MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/rooms/update/{id}",101L)
+        //MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/rooms/update/{id}",101L) {Can also use this instead of below one line}
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/rooms")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)

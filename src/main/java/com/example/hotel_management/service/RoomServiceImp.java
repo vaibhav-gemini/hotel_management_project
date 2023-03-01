@@ -68,13 +68,17 @@ public class RoomServiceImp implements RoomService{
     @Override
     public void addDefaultroom() {
         Room room1 = new Room(101, "deluxe", 2, true, 10000, false, true);
-        Room room2 = new Room(201, "simple", 2, true, 5000, false, true);
-        Room room3 = new Room(301, "simple", 2, true, 5000, false, true);
-        Room room4 = new Room(401, "luxury", 2, true, 15000, false, true);
+        Room room2 = new Room(102, "deluxe", 2, true, 10000, false, true);
+        Room room3 = new Room(201, "simple", 2, true, 5000, false, true);
+        Room room4 = new Room(202, "simple", 2, true, 5000, false, true);
+        Room room5 = new Room(401, "luxury", 2, true, 15000, false, true);
+        Room room6 = new Room(402, "luxury", 2, true, 15000, false, true);
         roomRepository.save(room1);
         roomRepository.save(room2);
         roomRepository.save(room3);
         roomRepository.save(room4);
+        roomRepository.save(room5);
+        roomRepository.save(room6);
     }
 
     /**

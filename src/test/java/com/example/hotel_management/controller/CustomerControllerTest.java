@@ -102,11 +102,11 @@ public class CustomerControllerTest {
                        .build();
 
         System.out.println(customerUpdate);
-        //Mockito.when(customerServiceImp.updateCustomer( anyLong(),Mockito.any())).thenReturn(customerUpdate);
+        //Mockito.when(customerServiceImp.updateCustomer( anyLong(),Mockito.any())).thenReturn(customerUpdate); {Can also use this instead of below two lines}
          Mockito.when(customerServiceImp.getCustomerById(customer1.getCustomer_id())).thenReturn(customer1);
          Mockito.when(customerServiceImp.addcustomers(Mockito.any())).thenReturn(customerUpdate);
         String updatedContent = objectWriter.writeValueAsString(customerUpdate);
-        //MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/customers/update/{custId}",1L)
+        //MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/customers/update/{custId}",1L) {Can also use this instead of below one line}
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/customers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)

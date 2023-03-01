@@ -129,11 +129,11 @@ public class BookingControllerTest {
                 .customerList(customerList1)
                 .build();
 
-        //Mockito.when(bookingServiceImp.updateBooking(anyLong(), Mockito.any())).thenReturn(updateBooking);
+        //Mockito.when(bookingServiceImp.updateBooking(anyLong(), Mockito.any())).thenReturn(updateBooking); {Can also use this instead of below two lines}
         Mockito.when(bookingServiceImp.getBookingDetailsById(booking1.getBooking_id())).thenReturn(booking1);
         Mockito.when(bookingServiceImp.addBookingDetails(Mockito.any())).thenReturn(updateBooking);
         String updatedContent = objectWriter.writeValueAsString(updateBooking);
-        //MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/booking/update/{id}",1L)
+        //MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/booking/update/{id}",1L) {Can also use this instead of below one line}
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/booking")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
