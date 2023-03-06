@@ -2,18 +2,20 @@ package com.example.hotel_management.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Entity
+@AllArgsConstructor
 @Builder
 @Table(name = "Booking_details")
+@NoArgsConstructor
 public class Booking {
     @Id
     @Column(name = "booking_id")
@@ -29,12 +31,12 @@ public class Booking {
     private Date end_date;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_list_customer_id")
-    public List<Customer> customerList;
+    private List<Customer> customerList;
     @Column(name = "type_of_room_prefered")
     private String typeOfRoomPrefered;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "room_list_booking_id")
-    public List<Room> roomList;
+    private List<Room> roomList;
     @Column(name = "modeOfBokking")
     private String modeOfBokking;
     @Column(name = "bill_amount")

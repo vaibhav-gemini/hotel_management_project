@@ -14,56 +14,57 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class RoomServiceImp implements RoomService{
+public class RoomServiceImp implements RoomService {
 
     @Autowired
     private RoomRepository roomRepository;
 
     /**
-     * to get List of all Rooms
+     * to get List of all Rooms.
+     *
      * @return List of Rooms
      */
     @Override
     public List<Room> getRooms() throws DataNotFoundException {
         List<Room> rooms = roomRepository.findAll();
-        if(rooms.size()==0){
+        if (rooms.size() == 0) {
             throw new DataNotFoundException("Please enter some data list is empty");
         }
-        log.info(rooms.size()+" Total number of rooms ");
+        log.info(rooms.size() + " Total number of rooms ");
         return rooms;
     }
 
     /**
-     * to Add a new Room
+     * to Add a new Room.
+     *
      * @param room - Room's Details
      * @return Room's Details
      */
     @Override
-    public Room addRooms(Room room) throws DataNotFoundException {
-        if(room.getType()==null || Objects.isNull(room.getPrice_per_day()) ){
+    public Room addRooms(final Room room) throws DataNotFoundException {
+        if (room.getType() == null || Objects.isNull(room.getPrice_per_day())) {
             throw new DataNotFoundException("Some data missing!");
         }
         return roomRepository.save(room);
     }
 
     /**
-     * to get Room details with room's ID
+     * to get Room details with room's ID.
      *
      * @param id - Customer's ID
      * @return Customer's Details
      */
     @Override
-    public Room getRoomById(long id) throws IdNotFoundException{
+    public Room getRoomById(final long id) throws IdNotFoundException {
         Optional<Room> room = roomRepository.findById(id);
-        if(room.isEmpty()){
+        if (room.isEmpty()) {
             throw new IdNotFoundException("No room for this id");
         }
         return room.get();
     }
 
     /**
-     * to add default Rooms
-     *
+     * to add default Rooms.
      */
     @Override
     public void addDefaultroom() {
@@ -82,19 +83,19 @@ public class RoomServiceImp implements RoomService{
     }
 
     /**
-     * to Update Room Details
+     * to Update Room Details.
      *
-     * @param id - Room's ID
-     * @param room   - Room's Details
+     * @param id   - Room's ID
+     * @param room - Room's Details
      * @return Room's Details
      */
     @Override
-    public Room updateRoom(Room room, long id) throws IdNotFoundException {
-        if(room == null || Objects.isNull(room.getRoom_number())){
+    public Room updateRoom(final Room room, final long id) throws IdNotFoundException {
+        if (room == null || Objects.isNull(room.getRoom_number())) {
             throw new IdNotFoundException("No ID present please check again.");
         }
         Optional<Room> roomOptional = roomRepository.findById(id);
-        if(roomOptional.isEmpty()){
+        if (roomOptional.isEmpty()) {
             throw new RuntimeException("Id not found bro");
         }
         Room existingRoom = roomOptional.get();
@@ -110,15 +111,15 @@ public class RoomServiceImp implements RoomService{
     }
 
     /**
-     * to Delete a Room
+     * to Delete a Room.
      *
      * @param id - room's ID
      */
     @Override
-    public void deleteRoom(long id) throws IdNotFoundException {
+    public void deleteRoom(final long id) throws IdNotFoundException {
         Optional<Room> room = roomRepository.findById(id);
-        if(room.isEmpty()){
-            throw new IdNotFoundException("Room with room id "+ id + " not found");
+        if (room.isEmpty()) {
+            throw new IdNotFoundException("Room with room id " + id + " not found");
         }
         log.info("Room with ID " + id + "deleted successfully");
         roomRepository.deleteById(id);
