@@ -43,7 +43,7 @@ public class BookingController {
     })
     @GetMapping(produces = "application/json")
     public ResponseEntity<List<Booking>> getAllBooking() throws DataNotFoundException {
-        return new ResponseEntity<List<Booking>>(bookingService.getAllBookingDetails(), HttpStatus.OK);
+        return new ResponseEntity<>(bookingService.getAllBookingDetails(), HttpStatus.OK);
     }
 
     /**
@@ -62,7 +62,7 @@ public class BookingController {
     @PostMapping(produces = "application/json")
     public ResponseEntity<Booking> addBookingDetails(@Valid @RequestBody final Booking booking) throws DataNotFoundException {
         Booking newBooking = bookingService.getRoomsToAllocate(booking);
-        return new ResponseEntity<Booking>(bookingService.addBookingDetails(newBooking), HttpStatus.CREATED);
+        return new ResponseEntity<>(bookingService.addBookingDetails(newBooking), HttpStatus.CREATED);
     }
 
     /**
@@ -80,7 +80,7 @@ public class BookingController {
     })
     @GetMapping(path = "/{bookingId}", produces = "application/json")
     public ResponseEntity<Booking> getBookingDetailsById(@PathVariable final long bookingId) {
-        return new ResponseEntity<Booking>(bookingService.getBookingDetailsById(bookingId), HttpStatus.OK);
+        return new ResponseEntity<>(bookingService.getBookingDetailsById(bookingId), HttpStatus.OK);
     }
 
     /**
@@ -98,7 +98,7 @@ public class BookingController {
     })
     @PutMapping(path = "/update/{bookingId}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Booking> updateBooking(@PathVariable final long bookingId, @RequestBody final Booking booking) {
-        return new ResponseEntity<Booking>(bookingService.updateBooking(bookingId, booking), HttpStatus.OK);
+        return new ResponseEntity<>(bookingService.updateBooking(bookingId, booking), HttpStatus.OK);
     }
 
     /**
@@ -116,6 +116,6 @@ public class BookingController {
     @DeleteMapping(path = "/delete/{bookingId}")
     public ResponseEntity<String> deleteBookingDetails(@PathVariable final long bookingId) throws DataNotFoundException {
         bookingService.deleteBookingDetails(bookingId);
-        return new ResponseEntity<String>("Booking details Deleted with ID - " + bookingId, HttpStatus.OK);
+        return new ResponseEntity<>("Booking details Deleted with ID - " + bookingId, HttpStatus.OK);
     }
 }

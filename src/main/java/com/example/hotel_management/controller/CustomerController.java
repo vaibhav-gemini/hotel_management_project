@@ -93,7 +93,7 @@ public class CustomerController {
     })
     @PutMapping(path = "/update/{customerId}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Customer> updateCustomer(@PathVariable final long customerId, @RequestBody final Customer customer) throws IdNotFoundException {
-        return new ResponseEntity<Customer>(customerService.updateCustomer(customerId, customer), HttpStatus.OK);
+        return new ResponseEntity<>(customerService.updateCustomer(customerId, customer), HttpStatus.OK);
     }
 
     /**
