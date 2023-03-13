@@ -33,7 +33,7 @@ public class BookingServiceImp implements BookingService{
 
     /**
      * to get List of all Bookings done
-     * @return List of Booking
+     * @return List of Booking!
      */
 
     @Override
