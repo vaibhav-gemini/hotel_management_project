@@ -24,7 +24,7 @@ public class BookingServiceImp implements BookingService{
     private RoomRepository roomRepository;
     @Autowired
     private RoomService roomService;
-    private int getSingleRoomEntry = 0;
+    private int getSingleRoomEntry1 = 0;
 
     @Autowired
     private BookingRepository bookingRepository;
@@ -184,9 +184,9 @@ public class BookingServiceImp implements BookingService{
      */
     @Override
     public Booking methodToAllocateRoom(Booking booking, List<Room> roomList) throws DataNotFoundException {
-        if(getSingleRoomEntry==0){
+        if(getSingleRoomEntry1==0){
             roomService.addDefaultroom();
-            getSingleRoomEntry++;
+            getSingleRoomEntry1++;
         }
         String roomRequired = booking.getTypeOfRoomPrefered();
         List<Room> ansRooms = roomRepository.findRoomByTypeAndAvailability(roomRequired,true);
