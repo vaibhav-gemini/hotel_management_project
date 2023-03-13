@@ -8,12 +8,19 @@ import com.example.hotel_management.exception.IdNotFoundException;
 import java.util.List;
 
 public interface BookingService {
-    public List<Booking> getAllBookingDetails() throws DataNotFoundException;
-    public Booking addBookingDetails(Booking booking) throws DataNotFoundException;
-    public Booking getBookingDetailsById(long id) throws IdNotFoundException;
-    public void deleteBookingDetails(long id) throws IdNotFoundException, DataNotFoundException;
-    public Booking updateBooking(long id , Booking booking);
-    public Booking methodToAllocateRoom(Booking booking, List<Room> rooms) throws DataNotFoundException;
-    public int countCustomers(Booking booking);
-    public Booking getRoomsToAllocate(Booking booking) throws DataNotFoundException;
+    List<Booking> getAllBookingDetails() throws DataNotFoundException;
+
+    Booking addBookingDetails(Booking booking) throws DataNotFoundException;
+
+    Booking getBookingDetailsById(long id) throws IdNotFoundException;
+
+    void deleteBookingDetails(long id) throws IdNotFoundException, DataNotFoundException;
+
+    Booking updateBooking(long id, Booking booking);
+
+    Booking methodToAllocateRoom(Booking booking, List<Room> rooms) throws DataNotFoundException;
+
+    int countCustomers(Booking booking);
+
+    Booking getRoomsToAllocate(Booking booking) throws DataNotFoundException;
 }

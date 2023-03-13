@@ -11,16 +11,17 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<Object> handleNoSuchElementException(IllegalArgumentException ex , WebRequest request){
-        System.out.println("Mai global se call hua");
+    public ResponseEntity<Object> handleNoSuchElementException(IllegalArgumentException ex, WebRequest request) {
         return new ResponseEntity<Object>(new ApiError(ex.getMessage(), HttpStatus.NOT_FOUND, LocalDateTime.now()), HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(DataNotFoundException.class)
-    public ResponseEntity<Object> handleNoDataException(DataNotFoundException ex , WebRequest request){
+    public ResponseEntity<Object> handleNoDataException(DataNotFoundException ex, WebRequest request) {
         return new ResponseEntity<Object>(new ApiError(ex.getMessage(), HttpStatus.NOT_FOUND, LocalDateTime.now()), HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<Object> handleRunTimeException(RuntimeException ex, WebRequest request){
+    public ResponseEntity<Object> handleRunTimeException(RuntimeException ex, WebRequest request) {
         return new ResponseEntity<Object>(new ApiError(ex.getMessage(), HttpStatus.NOT_FOUND, LocalDateTime.now()), HttpStatus.NOT_FOUND);
     }
 }

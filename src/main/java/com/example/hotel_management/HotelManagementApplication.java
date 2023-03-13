@@ -7,11 +7,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Hotel API" , version = "2.0" ,description = "Spring boot CRUD application for  Hotel Management System", contact = @Contact(name = "Vaibhav Oberoi" , email = "vaibhav.oberoi@geminisolutions.com")))
+@OpenAPIDefinition(info = @Info(title = "Hotel API", version = "2.0", description = "Spring boot CRUD application for  Hotel Management System", contact = @Contact(name = "Vaibhav Oberoi", email = "vaibhav.oberoi@geminisolutions.com")))
 public class HotelManagementApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(HotelManagementApplication.class, args);
-	}
+    public static void main(final String[] args) {
+        SpringApplication.run(HotelManagementApplication.class, args);
+    }
 
 }

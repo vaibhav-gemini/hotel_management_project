@@ -24,7 +24,7 @@ public class CustomerServiceImp implements CustomerService {
     private BookingRepository bookingRepository;
 
     /**
-     * to get List of all Customers
+     * to get List of all Customers.
      *
      * @return List of Customers
      */
@@ -39,25 +39,25 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     /**
-     * to Add a new Customer
+     * to Add a new Customer.
      *
      * @param customer - Customer's Details
      * @return Customer's Details
      */
     @Override
-    public Customer addcustomers(Customer customer) {
+    public Customer addcustomers(final Customer customer) {
         //No exception needed as values are already @NotEmpty.
         return customerRepository.save(customer);
     }
 
     /**
-     * to get Customer details with Customer's ID
+     * to get Customer details with Customer's ID.
      *
      * @param id - Customer's ID
      * @return Customer's Details
      */
     @Override
-    public Customer getCustomerById(long id) throws IdNotFoundException {
+    public Customer getCustomerById(final long id) throws IdNotFoundException {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty()) {
             throw new IdNotFoundException("No customer for this id available");
@@ -67,14 +67,14 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     /**
-     * to Update Customer Details
+     * to Update Customer Details.
      *
      * @param custId   - Customer's ID
      * @param customer - Customer's Details
      * @return Customer's Details
      */
     @Override
-    public Customer updateCustomer(long custId, Customer customer) throws IdNotFoundException {
+    public Customer updateCustomer(final long custId, final Customer customer) throws IdNotFoundException {
         Optional<Customer> customerOptional = customerRepository.findById(custId);
         if (customerOptional.isEmpty()) {
             throw new IdNotFoundException("Customer with Id " + custId + " not found!");
@@ -90,12 +90,12 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     /**
-     * to Delete a Customer
+     * to Delete a Customer.
      *
      * @param id - customer's ID
      */
     @Override
-    public void deleteCustomer(long id) throws IdNotFoundException {
+    public void deleteCustomer(final long id) throws IdNotFoundException {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty()) {
             throw new IdNotFoundException("Customer not found with id " + id);
@@ -105,14 +105,14 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     /**
-     * to get Customer details for a particular booking ID;
+     * to get Customer details for a particular booking ID.
      *
      * @param booking_id - booking ID
      * @return Customer's Details
      */
 
     @Override
-    public List<Customer> getCustomersOfParticularBookingId(long booking_id) throws IdNotFoundException {
+    public List<Customer> getCustomersOfParticularBookingId(final long booking_id) throws IdNotFoundException {
         if (Objects.isNull(booking_id)) {
             throw new IdNotFoundException("Booking Id is null" + booking_id);
         }

@@ -2,17 +2,18 @@ package com.example.hotel_management.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data
 @Builder
+@AllArgsConstructor
 @Entity
 @Table(name="customer_details")
+@NoArgsConstructor
 public class Customer {
     @Id
     @Column(name = "customer_id")
